@@ -23,8 +23,6 @@ export default class App extends React.Component<{}, {}> {
     public render(): React.ReactNode {
         return (
             <div className="container">
-                <h1>React top loading bar</h1>
-                {/*{this.getSlider()}*/}
             </div>
         );
     }

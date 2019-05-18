@@ -1,8 +1,8 @@
 {
   "name": "@netless/react-tool-box",
-  "version": "1.0.0",
-  "description": "netless whiteboard",
-  "author": "wushuang",
+  "version": "1.0.1",
+  "description": "netless whiteboard react tool box",
+  "author": "alwaysmavs",
   "license": "MIT",
   "repository": "",
   "main": "dist/index.js",
