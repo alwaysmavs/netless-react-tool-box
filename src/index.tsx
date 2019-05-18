@@ -24,7 +24,7 @@ export enum customerComponentPositionType {
     end = "end",
     head = "head",
 }
-export type Color = [number, number, number];
+export type Color = number[];
 export type MemberState = {
     currentApplianceName: string;
     strokeColor: Color;
@@ -32,7 +32,7 @@ export type MemberState = {
     textSize: number;
 };
 export type ToolBoxProps = {
-    memberState: MemberState;
+    memberState: Readonly<MemberState>;
     setMemberState: (modifyState: Partial<MemberState>) => void;
     customerComponent?: React.ReactNode[];
     customerComponentPosition?: customerComponentPositionType;

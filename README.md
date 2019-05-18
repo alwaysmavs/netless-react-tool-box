@@ -2,7 +2,7 @@
 
 > 一个和 `netless` 白板的工具切换组件，可以在您的白板项目中直接使用，也可以参考其中的代码逻辑自己实现。
 
-[![NPM](https://img.shields.io/npm/v/@netless/seek-slider.svg)](https://www.npmjs.com/package/@netless/seek-slider) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@netless/react-tool-box.svg)](https://www.npmjs.com/package/@netless/react-tool-box) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## 1. 说明
 
@@ -16,7 +16,7 @@ npm install --save @netless/react-tool-box
 
 或者
 
-yarn @netless/react-tool-box
+yarn add @netless/react-tool-box
 ```
 
 ## 3. 接口说明
