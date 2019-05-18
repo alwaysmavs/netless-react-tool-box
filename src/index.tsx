@@ -24,14 +24,18 @@ export enum customerComponentPositionType {
     end = "end",
     head = "head",
 }
-
+export type Color = [number, number, number];
+export type MemberState = {
+    currentApplianceName: string;
+    strokeColor: Color;
+    strokeWidth: number;
+    textSize: number;
+};
 export type ToolBoxProps = {
-    pptConverter?: any;
-    memberState: Readonly<any>;
-    setMemberState: (modifyState: Partial<any>) => void;
+    memberState: MemberState;
+    setMemberState: (modifyState: Partial<MemberState>) => void;
     customerComponent?: React.ReactNode[];
     customerComponentPosition?: customerComponentPositionType;
-    // customerPopover:
 };
 
 export type ToolBoxStates = {
