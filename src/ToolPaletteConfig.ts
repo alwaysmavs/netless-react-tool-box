@@ -23,6 +23,10 @@ const toolPaletteConfig = [
         name: "color-6",
         color: [30, 32, 35],
     },
+    {
+        name: "color-7",
+        color: [153, 204, 238],
+    },
 ];
 
 

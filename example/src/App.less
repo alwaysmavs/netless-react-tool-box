@@ -3,8 +3,23 @@ body {
   padding: 0;
 }
 .container {
-  padding-top: 252px;
   width: 100%;
-  //margin: 0 auto;
-  margin-left: 90px;
+  height: 100vh;
+  background-color: black;
+}
+
+.tool-box-cell {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.tool-box-cell-box {
+  width: 32px;
+  height: 32px;
+  user-select: none;
+  cursor: pointer;
 }
