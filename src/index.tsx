@@ -12,7 +12,6 @@ import {
     ToolBoxText,
 } from "./ToolIconComponent";
 import ToolBoxStyles from "./ToolBox.less";
-import ToolBoxPaletteBoxMobile from "./ToolBoxPaletteBoxMobile";
 
 type ApplianceDescription = {
     readonly iconView: React.ComponentClass<IconProps>;
@@ -35,7 +34,6 @@ export type MemberState = {
 export type ToolBoxProps = {
     memberState: Readonly<MemberState>;
     setMemberState: (modifyState: Partial<MemberState>) => void;
-    isMobile?: boolean;
     customerComponent?: React.ReactNode[];
     customerComponentPosition?: customerComponentPositionType;
 };
@@ -148,93 +146,21 @@ export default class ToolBox extends React.Component<ToolBoxProps, ToolBoxStates
     }
 
     public render(): React.ReactNode {
-        const {isMobile} = this.props;
         const nodes: React.ReactNode[] = [];
         for (const applianceName in ToolBox.descriptions) {
             const description = ToolBox.descriptions[applianceName];
-            let node: React.ReactNode;
-            if (isMobile) {
-                node = this.renderApplianceButtonMobile(applianceName, description);
-            } else {
-                node = this.renderApplianceButton(applianceName, description);
-            }
+            const node = this.renderApplianceButton(applianceName, description);
             nodes.push(node);
         }
-        if (isMobile) {
-            return [
-                <ToolBoxPaletteBoxMobile
-                    key={"tool-box-palette"}
-                    isPaletteBoxAppear={this.state.isPaletteBoxAppear}
-                    isToolBoxSwitched={this.state.isToolBoxSwitched}
-                    memberState={this.props.memberState}
-                    setMemberState={this.props.setMemberState}
-                    strokeEnable={this.state.strokeEnable}/>,
-                <div key={"tool-box-h5"} className={ToolBoxStyles["tool-box-h5"]}>
-                    <div
-                        className={ToolBoxStyles["tool-mid-box-h5"]}>
-                        {this.addCustomerComponent(nodes)}
-                    </div>
-                </div>,
-            ];
-        } else {
-            return (
-                <div className={ToolBoxStyles["tool-box"]}>
-                    <div className={ToolBoxStyles["tool-mid-box"]}>
-                        {this.addCustomerComponent(nodes)}
-                    </div>
+        return (
+            <div className={ToolBoxStyles["tool-box"]}>
+                <div className={ToolBoxStyles["tool-mid-box"]}>
+                    {this.addCustomerComponent(nodes)}
                 </div>
-            );
-        }
-    }
-
-    private renderApplianceButtonMobile(applianceName: string, description: ApplianceDescription): React.ReactNode {
-        const ToolIcon = description.iconView;
-        const state = this.props.memberState;
-        const isExtendable = description.hasStroke || description.hasColor;
-        const isSelected = state.currentApplianceName === applianceName;
-        const buttonColor = this.buttonColor(isSelected);
-
-        const cellBox: React.ReactNode = (
-            <div className={ToolBoxStyles["tool-box-cell-box-h5"]} key={applianceName}>
-                <div className={ToolBoxStyles["tool-box-cell-h5"]}
-                     onClick={() => this.clickAppliance(event, applianceName)}>
-                    <ToolIcon color={buttonColor}/>
-                </div>
-                {isExtendable && isSelected && (
-                    <TweenOne className={ToolBoxStyles["tool-box-cell-step-two"]}
-                              animation={{
-                                  duration: 150,
-                                  delay: 100,
-                                  width: 8,
-                                  backgroundColor: buttonColor,
-                                  display: isSelected ? "flex" : "none",
-                              }}
-                              style={{
-                                  backgroundColor: buttonColor,
-                                  width: 0,
-                                  display: "none",
-                              }}/>
-                )}
             </div>
         );
+    }
 
-        if (isExtendable && isSelected) {
-            return (
-                <div key={applianceName} onClick={() => this.setToolBoxPaletteBoxState(isSelected, description)}>
-                    {cellBox}
-                </div>
-            );
-        } else {
-            return cellBox;
-        }
-    }
-    private setToolBoxPaletteBoxState = (isSelected: boolean, description: ApplianceDescription): void => {
-        if (isSelected && this.state.extendsPanel) {
-            this.setState({isPaletteBoxAppear: true, strokeEnable: description.hasStroke});
-        } else {
-            this.setState({isPaletteBoxAppear: false});
-        }
-    }
     private renderApplianceButton(applianceName: string, description: ApplianceDescription): React.ReactNode {
         const ToolIcon = description.iconView;
         const state = this.props.memberState;
